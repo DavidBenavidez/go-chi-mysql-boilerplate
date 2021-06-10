@@ -11,9 +11,3 @@ type CreateCourseResponseDTO struct {
 	Description string          `json:"description"`
 	CourseData  CreateCourseDTO `json:"course"`
 }
-
-type DeleteCourseResponseDTO struct {
-	StatusCode   int    `json:"statusCode"`
-	Description  string `json:"description"`
-	RowsAffected int    `json:"rowsAffected"`
-}

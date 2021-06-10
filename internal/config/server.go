@@ -4,8 +4,8 @@ import (
 	"net/http"
 
 	"github.com/davidbenavidez/go-chi-mysql-boilerplate/internal/course"
-	cs "github.com/davidbenavidez/go-chi-mysql-boilerplate/internal/course_student"
 	"github.com/davidbenavidez/go-chi-mysql-boilerplate/internal/student"
+	sc "github.com/davidbenavidez/go-chi-mysql-boilerplate/internal/student_courses"
 	"github.com/go-chi/chi"
 	"github.com/jinzhu/gorm"
 )
@@ -31,9 +31,6 @@ func (s *Server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 func (s *Server) handleCreateCourse() http.HandlerFunc {
 	return course.CreateCourse(s.db)
 }
-func (s *Server) handleDeleteCourse() http.HandlerFunc {
-	return course.DeleteCourse(s.db)
-}
 
 // Student Handlers
 func (s *Server) handleCreateStudent() http.HandlerFunc {
@@ -44,12 +41,9 @@ func (s *Server) handleGetStudents() http.HandlerFunc {
 	return student.GetStudents(s.db)
 }
 
-// Course Student Handlers
-func (s *Server) handleCreateCourseStudent() http.HandlerFunc {
-	return cs.CreateCourseStudent(s.db)
-}
-func (s *Server) handleGetCourseStudent() http.HandlerFunc {
-	return cs.GetCourseStudent(s.db)
+// Student Courses Handlers
+func (s *Server) handleCreateStudentCourses() http.HandlerFunc {
+	return sc.CreateStudentCourses(s.db)
 }
 
 func SetupServer() (*Server, string, error) {

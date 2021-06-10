@@ -36,17 +36,9 @@ func (s *Server) setupDatabase() (*gorm.DB, error) {
 
 	db.SingularTable(true)
 
-	// Create Course table
-	// db.DropTable(&course.Course{})
-	db.AutoMigrate(&course.Course{})
-
-	// Create Student table
-	// db.DropTable(&student.Student{})
+	// AutoMigrate
 	db.AutoMigrate(&student.Student{})
-
-	// Create Course Student table
-	// db.DropTable(&cs.CourseStudent{})
-	// db.AutoMigrate(&cs.CourseStudent{})
+	db.AutoMigrate(&course.Course{})
 
 	return db, err
 }

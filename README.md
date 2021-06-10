@@ -17,9 +17,9 @@ configure static/config.yaml to access your database
 # endpoints
 POST /course
 POST /student
-DELETE /course
-
-GET /course/xxx/student
 POST /course/xxx/student
 
-<!-- GET /course/xxx/student/xxx did not finish :( -->
+GET /courses
+DELETE /course
+
+GET /students

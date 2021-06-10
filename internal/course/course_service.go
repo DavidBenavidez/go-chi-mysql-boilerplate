@@ -29,25 +29,3 @@ func validateCreateCourse(db *gorm.DB, course CreateCourseDTO) (CreateCourseDTO,
 
 	return course, http.StatusOK, "Successfully created course", nil
 }
-
-func validateDeleteCourse(db *gorm.DB, courseName string) (int, int, string, error) {
-	// Validate parameters here
-	if courseName == "" {
-		return 0, http.StatusBadRequest, "Missing course name", errors.New("Missing course name")
-	}
-
-	// if all is valid, delete from database
-	rowsAffected, err := deleteCourseDB(db, courseName)
-
-	if err != nil {
-		return 0, http.StatusInternalServerError, err.Error(), err
-	}
-
-	if rowsAffected == 0 {
-		return 0, http.StatusBadRequest, "Course not found", errors.New("Course not found")
-	}
-
-	log.Printf("Successfully deleted course. Rows affected: %d", rowsAffected)
-
-	return rowsAffected, http.StatusOK, "Successfully deleted course", nil
-}

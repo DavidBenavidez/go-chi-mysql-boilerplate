@@ -20,14 +20,3 @@ func insertCourseDB(db *gorm.DB, course CreateCourseDTO) (int, error) {
 
 	return int(result.RowsAffected), nil
 }
-
-func deleteCourseDB(db *gorm.DB, name string) (int, error) {
-	// Validate parameters here
-	result := db.Debug().Delete(&Course{}, "NAME = ?", name)
-
-	if result.Error != nil {
-		return 0, result.Error
-	}
-
-	return int(result.RowsAffected), nil
-}

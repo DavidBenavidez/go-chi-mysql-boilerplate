@@ -8,21 +8,21 @@ import (
 	"github.com/jinzhu/gorm"
 )
 
-func validateCreateStudent(db *gorm.DB, student CreateStudentDTO) (CreateStudentDTO, int, string, error) {
+func validateCreateStudent(db *gorm.DB, student StudentDTO) (StudentDTO, int, string, error) {
 	// Validate parameters here
 	if student.Name == "" {
-		return CreateStudentDTO{}, http.StatusBadRequest, "Missing student name", errors.New("Missing student name")
+		return StudentDTO{}, http.StatusBadRequest, "Missing student name", errors.New("Missing student name")
 	}
 
 	if student.Email == "" {
-		return CreateStudentDTO{}, http.StatusBadRequest, "Missing student email", errors.New("Missing email")
+		return StudentDTO{}, http.StatusBadRequest, "Missing student email", errors.New("Missing email")
 	}
 
 	// if all is valid, insert to database
 	rowsAdded, err := insertStudentDB(db, student)
 
 	if err != nil {
-		return CreateStudentDTO{}, http.StatusInternalServerError, err.Error(), err
+		return StudentDTO{}, http.StatusInternalServerError, err.Error(), err
 	}
 
 	log.Printf("Successfully created student %+v. Rows affected: %d", student, rowsAdded)

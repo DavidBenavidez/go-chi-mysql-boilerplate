@@ -1,6 +1,6 @@
 database:
   dbdriver: "mysql"
-  dbname: "sample"
+  dbname: "sample2"
   username: "root"
   password: ""
   host: "localhost"

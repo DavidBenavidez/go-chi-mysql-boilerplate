@@ -10,13 +10,12 @@ func (s *Server) setupRoutes() {
 	s.router.Use(middleware.Logger)
 	// Course
 	s.router.Post("/courses", s.handleCreateCourse())
-	s.router.Delete("/courses/{courseName}", s.handleDeleteCourse())
+	// s.router.Get("/courses", s.handleCreateCourse())
 
 	// Student
 	s.router.Get("/students", s.handleGetStudents())
 	s.router.Post("/students", s.handleCreateStudent())
 
 	// course_students
-	s.router.Post("/courses/{courseName}/students", s.handleCreateCourseStudent())
-	s.router.Get("/courses/{courseName}/students/{studentName}", s.handleGetCourseStudent())
+	s.router.Post("/courses/{courseName}/students", s.handleCreateStudentCourses())
 }
